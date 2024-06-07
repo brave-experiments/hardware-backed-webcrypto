@@ -157,7 +157,7 @@ If the API is meant to be origin isolated then we may need to limit extensions a
 
 ## Considered alternatives
 
-One consideration that was [raised](https://github.com/w3c/webcrypto/issues/263#issuecomment-1743145628) by @rbyer was to focus this more within higher level API designs. This would enable further hardware backed keys within browser APIs themselves. However, it likely wouldn't address many of the application level use cases which likely won't ever be addressed as web platform specific APIs. Hence, having an outlet via a low level extension in Web Crypto that can be built upon seemed more reasonable.
+One consideration that was [raised](https://github.com/w3c/webcrypto/issues/263#issuecomment-1743145628) by [@RByers](https://github.com/RByers) was to focus this more within higher level API designs. This would enable further hardware backed keys within browser APIs themselves. However, it likely wouldn't address many of the application level use cases which likely won't ever be addressed as web platform specific APIs. Hence, having an outlet via a low level extension in Web Crypto that can be built upon seemed more reasonable.
 
 ## Stakeholder Feedback / Opposition
 
@@ -168,5 +168,5 @@ At this time, this explainer has not been shared around enough to garner feedbac
 Here's a non-exhaustive list of people who should be ackowledged for their discussion so far:
 
 - WebCrypto API WG who first considered this and ultimately opted to not include this in the first version, but made note of their discussions in the spec.
-- @ghost for their writeup in [this issue](https://github.com/w3c/webcrypto/issues/263)
+- Anonymous Author for their writeup in [this issue](https://github.com/w3c/webcrypto/issues/263)
 - Further participant feedback during the discussion on the issue linked above
