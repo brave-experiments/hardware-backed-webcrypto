@@ -5,7 +5,7 @@
 - Kyle Den Hartog (Brave)
 
 ## Participate
-- Issues
+- [Repo Issues](https://github.com/brave-experiments/hardware-backed-webcrypto/issues)
 
 ## Introduction
 
