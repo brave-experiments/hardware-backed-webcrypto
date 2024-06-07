@@ -44,7 +44,7 @@ let keyPair = await window.crypto.subtle.generateKey(
   bindings: {
     hardwareBound: true,
     originBindings: ["example.com"],
-    identifier: "3eac496b-1df8-4a4c-ac17-daf053d162d9",
+    identifier: "123ABC",
     updatable: true
   },
   ["sign", "verify"],
@@ -57,15 +57,15 @@ In this scenario, we're suggesting a modification to the `extractable` property 
 
 - `originBindings`: This is a list of strings which determines which origins have access to this cryptographic key for usage and management. Once an origin is set here, it can fully control the key in the same way as any other origin listed. If this property is not set, it will default to the origin of the caller.
 
-- `identifier`: The concept of an identifier here is to allow for the CryptoKey object to be referred to beyond the lifetime of the `CryptoKey` object returned by `generateKey`. This is especially useful when the key is being stored in an enclave or TPM where the key is not accessible to the application layer such that the key object can be handled by the application layer. One common pattern that I think should be expected is for an overarching identifier like a DID URL to be set here such that the key and cryptographic operations are performed by the browser, but the management, rotation, and usage are managed at a higher application layer such as a web wallet.
+- `identifier`: The concept of an identifier here is to allow for the CryptoKey object to be referred to beyond the lifetime of the `CryptoKey` object returned by `generateKey`. This is especially useful when the key is being stored in an enclave or TPM where the key is not accessible to the application layer such that the key object can be handled by the application layer. One common pattern that I think should be expected is for an global identifier like a UUID or potentially a DID URL to be set here such that the key and cryptographic operations are performed by the browser, but the management, rotation, and usage are managed at a higher application layer such as a web wallet.
 
 - `updatable`: This allows the original creator to limit whether or not a key can be updated beyond the original values set.
 
 ### Update Key (grant a new origin access to to the key to use it)
 ```js
-await window.crypto.subtle.updateKey("3eac496b-1df8-4a4c-ac17-daf053d162d9", {
+await window.crypto.subtle.updateKey("123ABC", {
     originBindings: ["example.com", "acmecorp.com"],
-    identifier: "did:example:123#abc"
+    identifier: "3eac496b-1df8-4a4c-ac17-daf053d162d9" // changes from a local identifer specific to the origin to a global identifier
 });
 ```
 
@@ -74,7 +74,7 @@ The design of this API is meant to build a permissions model around the origin s
 ### Use key to sign and verify a message
 ```js
 const ecdsaParams = { name: "ECDSA", hash: "SHA-256" };
-const keyIdentifier = "did:example:123#abc";
+const keyIdentifier = "3eac496b-1df8-4a4c-ac17-daf053d162d9";
 const message = "Hello World!";
 const signature = await window.crypto.subtle.sign(ecdsaParams, keyIdentifier, message);
 const verified = await window.crypto.subtle.verify(ecdsaParams, keyIdentifier, signature, message);
@@ -88,7 +88,7 @@ In this API, any origin (such as `example.com` or `acmecorp.com`) with permissio
 
 ### Delete key by identifier
 ```js
-await window.crypto.subtle.deleteKey("did:example:123#abc");
+await window.crypto.subtle.deleteKey("3eac496b-1df8-4a4c-ac17-daf053d162d9");
 ```
 
 In this API, any origin with permission to access and use a key that's hardware backed can also opt to delete the key as well.
@@ -109,7 +109,7 @@ const passkey = await navigator.credentials.create({
     user: {
       id: "3eac496b-1df8-4a4c-ac17-daf053d162d9",  // Example value
       name: "user@dev.com",
-      displayName: "user@dev.com",
+      displayName: "Passkey123",
     },
     pubKeyCredParams: [
       { alg: -7, type: "public-key" },   // ES256
