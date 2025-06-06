@@ -1,4 +1,4 @@
-# WebCrypto extension for hardware backed key management
+# WebCrypto Key Management API Extension
 
 ## Authors:
 
@@ -9,7 +9,7 @@
 
 ## Introduction
 
-As cryptographic key management is becoming more useful on the web it has meant that many wallets, extensions, and browser features need to re-implement key management for various features in the web platform. Furthermore, many sites wish to manage keys as well but often times cannot rely on software backed implementations only. This has meant that there's a lot of re-implementation of basic cryptographic operations in many various places that all encounter their own various tradeoffs. The purpose of this WebCrypto extension is to act as a low level key management API so that it would be possible to have hardware backed keys as a low level primitive. From there various features on the web such as wallets and browser APIs like WebAuthn Level 3 could be built upon this generalized key management layer.
+As cryptographic key management is becoming more necessary on the Web for security purposes it has meant that many wallets, extensions, and browser features need to re-implement key management for various features in the Web platform. Furthermore, many sites rely upon cryptographic operations, but often need hardware backed key storage or do not want to expose the cryptographic keys to site scripts and utilize site storage for risk of key theft. This has meant that there's a lot of re-implementation of basic cryptographic operations in many places that all encounter their own various tradeoffs. The purpose of this WebCrypto extension is to add low level key management API so that it would be possible to have hardware backed keys as a low level primitive. Additionally, this would allow for a purely browser managed software cryptographic implementation for commonly used algorithms. From there various features on the web such as wallets and browser APIs like WebAuthn Level 3 could be built upon this generalized key management layer.
 
 ## Goals [or Motivating Use Cases, or Scenarios]
 
